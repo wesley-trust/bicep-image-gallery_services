@@ -1,0 +1,23 @@
+jobs:
+- deployment: Deploy
+  continueOnError: true
+  environment: $(Environment)
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+      
+        # Checkout shared steps
+        - checkout: 'tfpipeline-shared'
+          displayName: 'Checkout shared Pipeline steps'
+          path: 's/pipeline/Shared/'
+
+        # Run common steps
+        - template: ./Steps/common.yml@tfpipeline-shared
+
+        # Run steps
+        - template: ./Steps/azure/bicep.yml@tfpipeline-shared
+          parameters:
+            file: $(bicep-file)
+            location: $(bicep-deployment_location)
+            command: create
