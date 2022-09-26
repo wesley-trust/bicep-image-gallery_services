@@ -3,7 +3,7 @@ targetScope = 'subscription'
 
 // Parameters
 @description('Desired name for the provisioned resources')
-param serviceName string = 'TestingServices'
+param serviceName string = 'ImageGalleryServices_Bicep'
 
 @description('Desired environment for the service collection of provisioned resources')
 param serviceEnvironment string = 'Prod'
@@ -15,7 +15,7 @@ param serviceDeployment string = '01'
 param serviceLocation string = 'UK South'
 
 // Module
-module TestingServices './bicepmodule-resource_group/main.bicep' = {
+module ImageGalleryServices_Bicep './bicepmodule-resource_group/main.bicep' = {
   scope: subscription()
   name: '${deployment().name}-${uniqueString(deployment().name)}'
   params: {
