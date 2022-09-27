@@ -18,6 +18,7 @@ jobs:
         # Run steps
         - template: ./Steps/azure/bicep.yml@tfpipeline-shared
           parameters:
-            file: $(bicep-file)
+            resource_group_file: $(bicep-resource_group_file)
+            resources_file: $(bicep-resources_file)
             location: $(bicep-deployment_location)
             command: create

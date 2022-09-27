@@ -1,5 +1,5 @@
 // Deployment Scope
-//targetScope = 'subscription'
+targetScope = 'subscription'
 
 // Parameters
 @description('Desired name for the provisioned resources')
@@ -14,12 +14,6 @@ param serviceDeployment string = '01'
 @description('Desired location for each service environment')
 param serviceLocation string = 'UK South'
 
-@description('Desired location for each service environment')
-param resourceName string = 'Image-gallery_services_bicep'
-
-@description('Desired description for the provisioned resources')
-param resourceDescription string = 'Shared images'
-
 // Module
 module ImageGalleryServices_Bicep './bicepmodule-resource_group/main.bicep' = {
   scope: subscription()
@@ -29,14 +23,5 @@ module ImageGalleryServices_Bicep './bicepmodule-resource_group/main.bicep' = {
     serviceEnvironment: serviceEnvironment
     serviceLocation: serviceLocation
     serviceName: serviceName
-  }
-}
-
-// Resources
-resource Image_gallery_bicep 'Microsoft.Compute/galleries@2020-09-30' = {
-  name: resourceName
-  location: serviceLocation
-  properties: {
-    description: resourceDescription
   }
 }
