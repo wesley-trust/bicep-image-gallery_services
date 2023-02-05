@@ -15,7 +15,7 @@ param serviceDeployment string = '01'
 param serviceLocation string = 'UK South'
 
 // Module
-module ImageGalleryServices_Bicep './bicepmodule-resource_group/main.bicep' = {
+module ImageGalleryServices_Bicep './bicepmodule-resource_group/resources.bicep' = {
   scope: subscription()
   name: '${deployment().name}-${uniqueString(deployment().name)}'
   params: {
