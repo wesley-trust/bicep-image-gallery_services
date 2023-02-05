@@ -10,6 +10,10 @@ param serviceEnvironment string = 'Prod'
 param serviceDeployment string = '01'
 @description('Desired location for each service environment')
 param serviceLocation string = 'UK South'
+@description('Desired location for each service environment')
+param resourceName string = 'ImageGallery_Bicep'
+@description('Desired description for the provisioned resources')
+param resourceDescription string = 'Shared images'
 
 // Modules
 module ImageGalleryServices_Bicep './bicepmodule-resource_group/resources.bicep' = {
@@ -20,5 +24,15 @@ module ImageGalleryServices_Bicep './bicepmodule-resource_group/resources.bicep'
     serviceEnvironment: serviceEnvironment
     serviceLocation: serviceLocation
     serviceName: serviceName
+  }
+}
+
+module Image_gallery_Bicep './bicepmodule-compute_gallery/resources.bicep' = {
+  scope: resourceGroup(ImageGalleryServices_Bicep.name)
+  name: '${deployment().name}-${uniqueString(deployment().name)}'
+  params: {
+    resourceName: resourceName
+    resourceDescription: resourceDescription
+    resourceLocation: ImageGalleryServices_Bicep.outputs.location
   }
 }

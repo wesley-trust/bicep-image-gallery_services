@@ -1,3 +1,6 @@
 [submodule "bicepmodule-resource_group"]
 	path = bicepmodule-resource_group
 	url = https://github.com/wesley-trust/bicepmodule-resource_group
+[submodule "bicepmodule-compute_gallery"]
+	path = bicepmodule-compute_gallery
+	url = https://github.com/wesley-trust/bicepmodule-compute_gallery.git
