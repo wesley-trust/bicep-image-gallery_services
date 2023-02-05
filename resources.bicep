@@ -1,6 +1,6 @@
 // Parameters
 @description('Desired location for each service environment')
-param resourceLocation string
+param resourceLocation string = 'UK South'
 @description('Desired location for each service environment')
 param resourceName string = 'ImageGallery_Bicep'
 @description('Desired description for the provisioned resources')
